@@ -1,0 +1,58 @@
+<!--The below image shows a five-level nesting of tables, with the color ‘Blue’ representing the outermost or container table and the nested tables are represented with four different colors Yellow, Red, White and Green respectively. Design a webpage with nested tables in the format shown below-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+        td {
+            border: 1px solid grey;
+            padding: 10px;
+        }
+        .layer1 { background-color: rgb(43, 43, 151); }
+        .layer2 { background-color: yellow; }
+        .layer3 { background-color: rgb(181, 18, 18); }
+        .layer4 { background-color: white; }
+        .layer5 { background-color: green; }
+    </style>
+</head>
+<body>
+    <table class="layer1">
+        <tr>
+            <td>
+                <table class="layer2">
+                    <tr>
+                        <td>
+                            <table class="layer3">
+                                <tr>
+                                    <td>
+                                        <table class="layer4">
+                                            <tr>
+                                                <td>
+                                                    <table class="layer5">
+                                                        <tr>
+                                                            <td>
+                                                               <a href="click me.html" style="color: white;">Click Me</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
