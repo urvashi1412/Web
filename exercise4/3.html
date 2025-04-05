@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .slider-value {
+            margin-left: 10px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        #total-value {
+            font-size: 1.2em;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Product Feedback Form</h2>
+    <form>
+        <div class="slider-container">
+            <label for="slider1">Quality:</label>
+            <input type="range" id="slider1" name="quality" min="0" max="10" value="5" oninput="updateTotal()">
+            <span class="slider-value" id="slider1-value">5</span>
+        </div>
+
+
+        <div class="slider-container">
+            <label for="slider2">Ease of Use:</label>
+            <input type="range" id="slider2" name="ease-of-use" min="0" max="10" value="5" oninput="updateTotal()">
+            <span class="slider-value" id="slider2-value">5</span>
+        </div>
+
+
+        <div class="slider-container">
+            <label for="slider3">Value for Money:</label>
+            <input type="range" id="slider3" name="value-for-money" min="0" max="10" value="5" oninput="updateTotal()">
+            <span class="slider-value" id="slider3-value">5</span>
+        </div>
+
+
+        <div>
+            <label>Total Score:</label>
+            <output id="total-value">15</output>
+        </div>
+    </form>
+</body>
+</html>
