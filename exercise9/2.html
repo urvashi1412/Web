@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+</head>
+<body>
+    <h2>Airline Seat Reservation System</h2>
+    <button onclick="reserveSeat(1)">First-Class (Seats 1-5)</button>
+    <button onclick="reserveSeat(2)">Economy (Seats 6-10)</button>
+    <p id="boardingPass"></p>
+    <p id="seatStatus"></p>
+
+
+    <script>
+        let seats = new Array(10).fill(0);
+        let passengerCount = 0;
+
+
+        function reserveSeat(section) {
+            if (passengerCount >= 10) {
+                alert("Sorry, the flight is fully booked.");
+                return;
+            }
+           
+            let seatAssigned = false;
+            let seatNumber;
+            let passengerName = prompt("Enter passenger name:");
+           
+            if (!passengerName) {
+                alert("Name is required to book a seat.");
+                return;
+            }
+           
+            if (section === 1) {
+                for (let i = 0; i < 5; i++) {
+                    if (seats[i] === 0) {
+                        seats[i] = 1;
+                        seatNumber = i + 1;
+                        seatAssigned = true;
+                        break;
+                    }
+                }
+                if (!seatAssigned && confirm("First-Class is full. Would you like a seat in Economy?")) {
+                    reserveSeat(2);
+                    return;
+                }
+            } else if (section === 2) {
+                for (let i = 5; i < 10; i++) {
+                    if (seats[i] === 0) {
+                        seats[i] = 1;
+                        seatNumber = i + 1;
+                        seatAssigned = true;
+                        break;
+                    }
+                }
+                if (!seatAssigned && confirm("Economy is full. Would you like a seat in First-Class?")) {
+                    reserveSeat(1);
+                    return;
+                }
+            }
+           
+            if (seatAssigned) {
+                passengerCount++;
+                let seatClass = seatNumber <= 5 ? "First-Class" : "Economy";
+                document.getElementById("boardingPass").innerHTML += `
+                    <h3>Boarding Pass</h3>
+                    <p><strong>Passenger:</strong> ${passengerName}</p>
+                    <p><strong>Seat Number:</strong> ${seatNumber}</p>
+                    <p><strong>Class:</strong> ${seatClass}</p>
+                    <hr>
+                `;
+                updateSeatStatus();
+            } else {
+                alert("Sorry, the flight is fully booked.");
+            }
+        }
+
+
+        function updateSeatStatus() {
+            document.getElementById("seatStatus").innerText = `Seats booked: ${passengerCount}/10`;
+        }
+    </script>
+</body>
+</html>
