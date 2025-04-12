@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Animals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="rainbow-heading">Welcome to Pet Paradise!</h1>
+    <div class="description">
+        <p>Cats are independent yet loving companions.</p>
+        <p>Dogs are loyal and playful friends.</p>
+        <p>Birds add melody to our homes with their chirps.</p>
+    </div>
+    <div class="background">
+        <img src="image2.png" alt="">
+    </div>
+    <svg class="ball" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="red" />
+    </svg>
+    <script>
+        const ball = document.querySelector('.ball');
+        ball.style.transition = 'transform 2s ease-in-out';
+        setInterval(() => {
+            ball.style.transform = 'translate(100px, 50px) rotate(360deg) skew(20deg, 10deg)';
+        }, 2000);
+    </script>
+</body>
+</html>
