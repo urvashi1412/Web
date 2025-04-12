@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE1891</title>
+    <script>
+        function calculateCost() {
+            const ratePerHour = 45;
+            let hoursWorked = prompt("Enter the number of hours worked:", "0");
+            let materialCost = prompt("Enter the cost of materials (in Rs.):", "0");
+            hoursWorked = parseFloat(hoursWorked);
+            materialCost = parseFloat(materialCost);
+            if (isNaN(hoursWorked) || isNaN(materialCost) || hoursWorked < 0 || materialCost < 0) {
+                alert("Invalid input! Please enter valid numbers.");
+                return;
+            }
+            let labourCost = ratePerHour * hoursWorked;
+            let totalCharge = labourCost + materialCost;
+            alert("Labour Cost: Rs. " + labourCost.toFixed(2) + "\nTotal Charge: Rs. " + totalCharge.toFixed(2));
+        }
+    </script>
+</head>
+<body onload="calculateCost()">
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>23BCE1891</title>
+    <script>
+        function checkStudentStatus() {
+            const regNumber = prompt("Please enter your registration number:");
+            if (regNumber !== null) {
+                const isStudent = confirm("Are you a student?");
+                if (isStudent) {
+                    alert("Thank you for confirming your student status.");
+                } else {
+                    alert("You have indicated that you are not a student.");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Student Registration Confirmation</h1>
+    <button onclick="checkStudentStatus()">Check Student Status</button>
+</body>
+</html>
