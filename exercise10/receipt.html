@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8b9472;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #5f654f;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            color: white;
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Order Receipt</h2>
+        <p><strong>Name:</strong> <span id="name"></span></p>
+        <p><strong>Phone:</strong> <span id="phone"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+
+        <h3>Ordered Products</h3>
+        <div id="orderDetails"></div>
+
+        <h3>Total Amount: $<span id="totalAmount"></span></h3>
+    </div>
+
+    <script>
+        let orderData = JSON.parse(localStorage.getItem("orderData"));
+
+        if (orderData) {
+            document.getElementById("name").textContent = orderData.customerName;
+            document.getElementById("phone").textContent = orderData.phoneNumber;
+            document.getElementById("email").textContent = orderData.email;
+
+            let orderDetails = document.getElementById("orderDetails");
+            let total = 0;
+
+            orderData.products.forEach(product => {
+                let cost = product.price * product.quantity;
+                total += cost;
+
+                let productDiv = document.createElement("div");
+                productDiv.classList.add("product");
+                productDiv.innerHTML = `<span>${product.name} (${product.quantity} kg)</span> <span>$${cost}</span>`;
+                orderDetails.appendChild(productDiv);
+            });
+
+            document.getElementById("totalAmount").textContent = total;
+        } else {
+            document.body.innerHTML = "<h2>No order found. Please go back and place an order.</h2>";
+        }
+    </script>
+
+</body>
+</html>

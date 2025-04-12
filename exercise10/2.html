@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Selection Methods</title>
+    <style>
+        .input-field {
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1 id="main-title">Original Title</h1>
+
+
+    <!-- (b) Using getElementsByName -->
+    <label>Username:</label>
+    <input type="text" name="username"><br><br>
+
+
+    <label>Gender:</label>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <p id="genderresult"></p>
+    <br><br>
+
+
+    <!-- (c) Using getElementsByTagName -->
+    <p>First paragraph.</p>
+    <p>Second paragraph.</p>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+
+    <!-- (d) Using getElementsByClassName -->
+    <input type="text" class="input-field" placeholder="Field 1">
+    <input type="text" class="input-field" placeholder="Field 2">
+    <br><br>
+
+
+    <!-- (e) Using querySelector -->
+    <p class="info">Info paragraph 1.</p>
+    <p class="info">Info paragraph 2.</p>
+
+
+    <!-- (f) Using querySelectorAll -->
+    <label>Hobbies:</label>
+    <input type="checkbox" class="hobby" value="Reading"> Reading
+    <input type="checkbox" class="hobby" value="Traveling"> Traveling
+    <input type="checkbox" class="hobby" value="Music"> Music
+    <br><br>
+
+
+    <p id="result"></p>
+
+
+    <button onclick="modifyDOM()">Run JavaScript</button>
+
+
+    <script>
+        function modifyDOM() {
+            // (a) Using getElementById
+            document.getElementById("main-title").innerText = "Updated Title";
+
+
+            // (b) Using getElementsByName
+            document.getElementsByName("username")[0].value = "John Doe";
+
+
+            let genderRadios = document.getElementsByName("gender");
+            let selectedGenders = [];
+            genderRadios.forEach(radio => {
+                selectedGenders.push(radio.value);
+            });
+
+
+            document.getElementById("genderresult").innerHTML = "Available genders: " + selectedGenders.join(", ");
+
+
+            // (c) Using getElementsByTagName
+            let paragraphs = document.getElementsByTagName("p");
+            document.getElementById("result").innerHTML = "Total number of < p > elements: " + paragraphs.length;
+
+
+            let listItems = document.getElementsByTagName("li");
+            for (let i = 0; i < listItems.length; i++) {
+                console.log("List item:", listItems[i].innerText);
+            }
+
+
+            // (d) Using getElementsByClassName
+            let inputFields = document.getElementsByClassName("input-field");
+            for (let i = 0; i < inputFields.length; i++) {
+                inputFields[i].style.backgroundColor = "lightblue";
+            }
+
+
+            // (e) Using querySelector
+            document.querySelector(".info").innerText = "This is the first info paragraph";
+            document.querySelector("input[name='gender']").checked = true;
+
+
+            // (f) Using querySelectorAll
+            let infoParagraphs = document.querySelectorAll(".info");
+            infoParagraphs.forEach(paragraph => {
+                console.log("Info paragraph:", paragraph.innerText);
+            });
+
+
+            let checkboxes = document.querySelectorAll(".hobby");
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+                console.log("Checked hobby:", checkbox.value);
+            });
+        }
+    </script>
+
+
+</body>
+</html>

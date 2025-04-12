@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            margin: 10px;
+            padding: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+    <h2>Hospital Patient Data</h2>
+    <table id="patientTable">
+        <thead>
+            <tr>
+                <th>P-Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+    <button onclick="sortPatients()">Sort by Age (Descending)</button>
+
+
+    <h3>Check if P-Id Exists</h3>
+    <input type="number" id="searchId" placeholder="Enter P-Id">
+    <button onclick="checkPatientId()">Check</button>
+    <p id="idResult"></p>
+
+
+    <h3>Filter Patients by Age</h3>
+    <input type="number" id="minAge" placeholder="Min Age">
+    <input type="number" id="maxAge" placeholder="Max Age">
+    <button onclick="filterByAge()">Filter</button>
+    <p id="filterResult"></p>
+
+
+    <script>
+        let patients = [
+            { P_Id: 1, Name: "Alen", Age: 39 },
+            { P_Id: 2, Name: "Deena", Age: 47 },
+            { P_Id: 3, Name: "Diana", Age: 21 },
+            { P_Id: 4, Name: "Jack", Age: 54 },
+            { P_Id: 5, Name: "Jain", Age: 23 },
+            { P_Id: 6, Name: "Kelvin", Age: 61 },
+            { P_Id: 7, Name: "Louis", Age: 69 },
+            { P_Id: 8, Name: "Rex", Age: 49 }
+        ];
+
+
+        function displayPatients(data) {
+            const tableBody = document.querySelector("#patientTable tbody");
+            tableBody.innerHTML = "";
+            data.forEach(patient => {
+                const row = `<tr>
+                    <td>${patient.P_Id}</td>
+                    <td>${patient.Name}</td>
+                    <td>${patient.Age}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+
+        function sortPatients() {
+            patients.sort((a, b) => b.Age - a.Age);
+            displayPatients(patients);
+        }
+
+
+        function checkPatientId() {
+            const id = parseInt(document.getElementById("searchId").value);
+            const exists = patients.some(patient => patient.P_Id === id);
+            document.getElementById("idResult").textContent = exists ? `P-Id ${id} exists!` : `P-Id ${id} not found.`;
+        }
+
+
+        function filterByAge() {
+            const minAge = parseInt(document.getElementById("minAge").value);
+            const maxAge = parseInt(document.getElementById("maxAge").value);
+            const filtered = patients.filter(patient => patient.Age >= minAge && patient.Age <= maxAge);
+            document.getElementById("filterResult").textContent =
+                filtered.length ? `Patients found: ${filtered.map(p => p.Name).join(", ")}` : "No patients found in this range.";
+        }
+
+
+        displayPatients(patients);
+    </script>
+
+
+</body>
+</html>
+
