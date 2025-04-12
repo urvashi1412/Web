@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+
+<body>
+    <canvas width="400" height="400" id="canvas"></canvas>
+
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let radius = canvas.width / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.9;
+
+
+        setInterval(drawClock, 1000);
+
+
+        function drawClock() {
+            drawBody(ctx, radius);
+            drawNumbers(ctx, radius);
+            drawHands(ctx, radius);
+        }
+
+
+        function drawBody(ctx, radius) {
+            let grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+            grad.addColorStop(0, "#333");
+            grad.addColorStop(0.5, "pink");
+            grad.addColorStop(1, "#333");
+
+
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = "lightyellow";
+            ctx.fill();
+
+
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = radius * 0.1;
+            ctx.stroke();
+
+
+            ctx.beginPath();
+            ctx.arc(0, 0, radius * 0.1, 0, Math.PI * 2);
+            ctx.fillStyle = "darkblue";
+            ctx.fill();
+        }
+
+
+        function drawNumbers(ctx, radius) {
+            ctx.font = radius * 0.15 + "px arial";
+            ctx.textBaseline = "middle";
+            ctx.textAlign = "center";
+            ctx.fillStyle = "black";
+
+
+            for (let i = 1; i <= 12; i++) {
+                let ang = i * (Math.PI / 6);
+                ctx.fillText(i, radius * 0.85 * Math.cos(ang - Math.PI / 2), radius * 0.85 * Math.sin(ang - Math.PI / 2));
+            }
+        }
+
+
+        function drawHands(ctx, radius) {
+            const now = new Date();
+            let hours = now.getHours() % 12;
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+
+            let hourAng = (Math.PI / 6) * hours + (Math.PI / 360) * minutes;
+            let minuteAng = (Math.PI / 30) * minutes;
+            let secAng = (Math.PI / 30) * seconds;
+
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(radius * 0.5 * Math.cos(hourAng - Math.PI / 2), radius * 0.5 * Math.sin(hourAng - Math.PI / 2));
+            ctx.lineWidth = radius * 0.07;
+            ctx.strokeStyle = "darkblue";
+            ctx.stroke();
+
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(radius * 0.75 * Math.cos(minuteAng - Math.PI / 2), radius * 0.75 * Math.sin(minuteAng - Math.PI / 2));
+            ctx.lineWidth = radius * 0.05;
+            ctx.strokeStyle = "blue";
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(radius * 0.85 * Math.cos(secAng - Math.PI / 2), radius * 0.85 * Math.sin(secAng - Math.PI / 2));
+            ctx.lineWidth = radius * 0.02;
+            ctx.strokeStyle = "red";
+            ctx.stroke();
+        }
+    </script>
+</body>

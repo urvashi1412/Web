@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .box {
+            position: absolute;
+            border: 2px solid black;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+        .orangeBox {
+            width: 300px;
+            height: 300px;
+            background-color: orange;
+            z-index: 1;
+        }
+
+
+        .redBox {
+            width: 220px;
+            height: 220px;
+            background-color: red;
+            z-index: 2;
+        }
+
+
+        .blueBox {
+            width: 150px;
+            height: 150px;
+            background-color: lightblue;
+            z-index: 3;
+        }
+
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 280px;
+        }
+
+
+        label {
+            font-size: 1.2em;
+            font-weight: bold;
+            min-width: 100px;
+        }
+
+
+        span {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+
+        input[type="range"] {
+            width: 120px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="box orangeBox" id="orangeBox"></div>
+        <div class="box redBox" id="redBox"></div>
+        <div class="box blueBox" id="blueBox"></div>
+    </div>
+
+
+    <div class="buttons">
+        <h2>Change Z-Index (-5 to 5)</h2>
+
+
+        <div class="slider-container">
+            <label for="redRange" style="color: red;">Red Box</label>
+            <input type="range" min="-5" max="5" value="2" id="redRange">
+            <span id="redval">2</span>
+        </div>
+
+
+        <div class="slider-container">
+            <label for="orangeRange" style="color: orange;">Orange Box</label>
+            <input type="range" min="-5" max="5" value="1" id="orangeRange">
+            <span id="orangeval">1</span>
+        </div>
+
+
+        <div class="slider-container">
+            <label for="blueRange" style="color: blue;">Blue Box</label>
+            <input type="range" min="-5" max="5" value="3" id="blueRange">
+            <span id="blueval">3</span>
+        </div>
+    </div>
+
+
+    <script>
+        let rangeInputs = document.querySelectorAll('input[type="range"]');
+
+
+        rangeInputs.forEach(inp => {
+            inp.addEventListener("input", function () {
+                let currval = parseInt(inp.value);
+                let spanId = inp.id.replace("Range", "val");
+                document.getElementById(spanId).innerText = currval;
+
+
+                let boxId = inp.id.replace("Range", "Box");
+                document.getElementById(boxId).style.zIndex = currval;
+            });
+        });
+    </script>
+
+
+</body>
+
+
+</html>

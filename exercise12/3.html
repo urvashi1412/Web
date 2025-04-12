@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+
+        .charts-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+
+        .chart-box {
+            width: 550px;
+            height: 450px;
+            padding: 10px;
+            background: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+
+        h1 {
+            color: #333;
+        }
+    </style>
+
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+
+<body>
+    <h1>FIFA World Cup Winners Analysis</h1>
+
+
+    <div class="charts-container">
+        <div id="barChart" class="chart-box"></div>
+        <div id="lineChart" class="chart-box"></div>
+        <div id="pieChart" class="chart-box"></div>
+        <div id="donutChart" class="chart-box"></div>
+    </div>
+
+
+    <script>
+        let countries = ["Argentina", "Brazil", "Germany", "Italy", "Uruguay", "France", "England", "Spain"];
+        let wins = [3, 5, 4, 4, 2, 2, 1, 1];
+        let colors = ["#3498db", "#e74c3c", "#2ecc71", "#f1c40f", "#9b59b6", "#1abc9c", "#34495e", "#e67e22"];
+
+
+   
+        const barData = [{
+            x: countries,
+            y: wins,
+            type: "bar",
+            marker: { color: colors }
+        }];
+        const barLayout = {
+            title: "FIFA World Cup Winners (Bar Chart)",
+            xaxis: { title: "Countries" },
+            yaxis: { title: "Titles Won" },
+            plot_bgcolor: "#ecf0f1",
+            paper_bgcolor: "#ffffff"
+        };
+        Plotly.newPlot("barChart", barData, barLayout);
+
+
+   
+        const lineData = [{
+            x: countries,
+            y: wins,
+            type: "scatter",
+            mode: "lines+markers",
+            marker: { color: "#3498db", size: 8 },
+            line: { color: "#e74c3c", width: 3 }
+        }];
+        const lineLayout = {
+            title: "FIFA World Cup Winners (Line Chart)",
+            xaxis: { title: "Countries" },
+            yaxis: { title: "Titles Won" },
+            plot_bgcolor: "#ecf0f1",
+            paper_bgcolor: "#ffffff"
+        };
+        Plotly.newPlot("lineChart", lineData, lineLayout);
+
+
+        const pieData = [{
+            labels: countries,
+            values: wins,
+            type: "pie",
+            marker: { colors: colors }
+        }];
+        const pieLayout = {
+            title: "FIFA World Cup Winners (Pie Chart)",
+            paper_bgcolor: "#ffffff"
+        };
+        Plotly.newPlot("pieChart", pieData, pieLayout);
+
+
+        const donutData = [{
+            labels: countries,
+            values: wins,
+            type: "pie",
+            hole: 0.4,
+            marker: { colors: colors }
+        }];
+        const donutLayout = {
+            title: "FIFA World Cup Winners (Donut Chart)",
+            paper_bgcolor: "#ffffff"
+        };
+        Plotly.newPlot("donutChart", donutData, donutLayout);
+    </script>
+</body>
+
+
+</html>
+
+
