@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23bce1891</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #age {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <label for="dob">Enter Date of Birth:</label>
+    <input type="date" id="dob">
+    <div id="age"></div>
+
+
+    <script>
+        document.getElementById("dob").addEventListener("mouseover", function () {
+            let dobValue = document.getElementById("dob").value;
+            if (dobValue) {
+                let dob = new Date(dobValue);
+                let today = new Date();
+                let age = today.getFullYear() - dob.getFullYear();
+                let monthDiff = today.getMonth() - dob.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                    age--;
+                }
+                document.getElementById("age").textContent = `Your age is: ${age} years`;
+            }
+        });
+    </script>
+</body>
+</html>

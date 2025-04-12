@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border: 2px solid black;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 8px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body onload="updateClock()">
+
+
+    <div class="container">
+        <h2 style="text-align: center;">Test JavaScript Form Validation</h2>
+        <div id="clock" style="text-align: right;"></div>
+            <form id="myForm">
+                <table>
+                    <tr>
+                        <td><label>Name*</label></td>
+                        <td><input type="text" name="name" id="name">
+                            <span class="error" id="nameError"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label>Address</label></td>
+                        <td><input name="address" id="address">
+                            <span class="error" id="addressError"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label>Zip Code*</label></td>
+                        <td><input type="text" name="zip" id="zip">
+                            <span class="error" id="zipError"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label>Country*</label></td>
+                        <td>
+                            <select name="country" id="country">
+                                <option value="">Please select...</option>
+                                <option value="USA">USA</option>
+                                <option value="India">India</option>
+                            </select>
+                            <span class="error" id="countryError"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Gender*</label></td>
+                        <td>
+                            <input type="radio" name="gender" value="Male"> Male
+                            <input type="radio" name="gender" value="Female"> Female
+                            <span class="error" id="genderError"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Preferences*</label></td>
+                        <td>
+                            <input type="checkbox" name="preference" value="Red"> Red
+                            <input type="checkbox" name="preference" value="Green"> Green
+                            <input type="checkbox" name="preference" value="Blue"> Blue
+                            <span class="error" id="preferenceError"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Phone*</label></td>
+                        <td><input type="text" name="phone" id="phone">
+                            <span class="error" id="phoneError"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label>Email*</label></td>
+                        <td><input type="email" name="email" id="email">
+                            <span class="error" id="emailError"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label>password(6-8 characters)*</label></td>
+                        <td><input type="password" name="password" id="password">
+                            <span class="error" id="passwordError"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label>Verify password*:</label></td>
+                        <td><input type="password" name="confirmPassword" id="confirmPassword">
+                            <span class="error" id="confirmPasswordError"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label>PAN No:</label></td>
+                        <td><input type="text" name="pan" id="pan">
+                            <span class="error" id="panError"></span></td>
+                    </tr>
+                </table>
+
+
+                <div class="buttons">
+                    <button type="button" onclick="validateForm()">Send</button>
+                    <button type="reset">Clear</button>
+                </div>
+            </form>
+    </div>
+
+
+    <script>
+        function updateClock() {
+            setInterval(() => {
+                let now = new Date();
+                document.getElementById("clock").innerText = "Time: " + now.toLocaleTimeString();
+            }, 1000);
+        }
+
+
+        function validateForm() {
+            let valid = true;
+
+
+            let name = document.getElementById("name").value;
+            if (name === "" || name.length > 15) {
+                document.getElementById("nameError").innerText = "Name must be 1-15 characters!";
+                valid = false;
+            } else {
+                document.getElementById("nameError").innerText = "";
+            }
+
+
+            let address = document.getElementById("address").value;
+            if (address === "") {
+                document.getElementById("addressError").innerText = "Address is required!";
+                valid = false;
+            } else {
+                document.getElementById("addressError").innerText = "";
+            }
+
+
+            let zip = document.getElementById("zip").value;
+            if (!/^\d{5,6}$/.test(zip)) {
+                document.getElementById("zipError").innerText = "Zip Code must be 5-6 digits!";
+                valid = false;
+            } else {
+                document.getElementById("zipError").innerText = "";
+            }
+
+
+            let phone = document.getElementById("phone").value;
+            if (!/^\d{10}$/.test(phone)) {
+                document.getElementById("phoneError").innerText = "Phone must be 10 digits!";
+                valid = false;
+            } else {
+                document.getElementById("phoneError").innerText = "";
+            }
+
+
+            let email = document.getElementById("email").value;
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                document.getElementById("emailError").innerText = "Enter a valid email!";
+                valid = false;
+            } else {
+                document.getElementById("emailError").innerText = "";
+            }
+
+
+            let password = document.getElementById("password").value;
+            if (!/(?=.*\d)(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).{8,15}/.test(password)) {
+                document.getElementById("passwordError").innerText = "Password must be 8-15 chars with letters, numbers & special chars!";
+                valid = false;
+            } else {
+                document.getElementById("passwordError").innerText = "";
+            }
+
+
+            let pan = document.getElementById("pan").value;
+            if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) {
+                document.getElementById("panError").innerText = "Invalid PAN Format!";
+                valid = false;
+            } else {
+                document.getElementById("panError").innerText = "";
+            }
+
+
+            if (valid) {
+                alert("Form Submitted Successfully!");
+            }
+        }
+    </script>
+
+
+</body>
+</html>
+

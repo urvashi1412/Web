@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE1891</title>
+</head>
+<body>
+    <script>
+        var textbox = document.createElement("input");
+        textbox.type = "text";
+        textbox.style.backgroundColor = "green";
+        textbox.placeholder = "Enter text here";
+        document.body.appendChild(textbox);
+
+
+        textbox.onfocus = function() {
+            textbox.style.backgroundColor = "yellow";
+        };
+
+
+        textbox.onblur = function() {
+            textbox.style.backgroundColor = "green";
+        };
+
+
+        textbox.onchange = function() {
+            alert("Entered text is: " + textbox.value);
+        };
+    </script>
+</body>
+</html>

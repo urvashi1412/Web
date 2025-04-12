@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        td{
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createTable(){
+            let table= document.createElement("table");
+            for(let i=0;i<3;i++){
+                let row=document.createElement("tr");
+                for(let j=0;j<3;j++){
+                    let cell= document.createElement("td");
+                    cell.textContent= `Row ${i + 1}, Col ${j + 1}`;
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+            document.body.appendChild(table);
+        }
+        createTable();
+    </script>
+</body>
+</html>

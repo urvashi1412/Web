@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Enter item">
+    <button id="button">Add Item</button>
+    <ul id="list"></ul>
+
+
+    <script>
+        const input = document.getElementById("input");
+        const button = document.getElementById("button");
+        const ul = document.getElementById("list");
+
+
+        button.addEventListener("dblclick", () => {
+            const text = input.value.trim();
+            if (text !== "") {
+                const li = document.createElement("li");
+                li.textContent = text;
+                ul.appendChild(li);
+                input.value = "";
+            }
+        });
+    </script>
+</body>
+</html>

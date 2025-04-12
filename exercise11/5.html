@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+</head>
+<body>
+    <h2>Key Press Counter</h2>
+    <label for="textInput">Type:</label>
+    <input type="text" id="textInput" onkeyup="countKeyPress()">
+    <br><br>
+    <label for="countDisplay">Key Press Count:</label>
+    <input type="text" id="countDisplay" readonly>
+    <script>
+        let keyPressCount=0;
+        function countKeyPress(){
+            keyPressCount++;
+            document.getElementById("countDisplay").value= keyPressCount;
+        }
+    </script>
+</body>
+</html>

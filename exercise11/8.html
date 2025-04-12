@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+            font-size: 1em;
+            padding: 10px;
+        }
+        #charCount {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <label for="textarea">Type something:</label><br>
+    <textarea id="textarea"></textarea>
+    <div id="charCount">Character count: 0</div>
+
+
+    <script>
+        document.getElementById("textarea").addEventListener("input", function () {
+            let text = this.value.replace(/\s/g, '');
+            document.getElementById("charCount").textContent = `Character count: ${text.length}`;
+        });
+    </script>
+</body>
+</html>

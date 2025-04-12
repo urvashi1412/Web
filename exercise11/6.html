@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1891</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #stopwatch {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 1em;
+            margin: 5px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="stopwatch">00:00:00</div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+
+
+    <script>
+        let timer;
+        let startTime;
+        let elapsedTime = 0;
+        let running = false;
+
+
+        function updateTime() {
+            const currentTime = Date.now() - startTime + elapsedTime;
+            let hours = Math.floor(currentTime / 3600000);
+            let minutes = Math.floor((currentTime % 3600000) / 60000);
+            let seconds = Math.floor((currentTime % 60000) / 1000);
+            document.getElementById("stopwatch").textContent =
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+
+        document.getElementById("start").addEventListener("click", function () {
+            if (!running) {
+                running = true;
+                startTime = Date.now();
+                timer = setInterval(updateTime, 1000);
+            }
+        });
+
+
+        document.getElementById("stop").addEventListener("click", function () {
+            if (running) {
+                running = false;
+                clearInterval(timer);
+                elapsedTime += Date.now() - startTime;
+            }
+        });
+
+
+        document.getElementById("reset").addEventListener("click", function () {
+            running = false;
+            clearInterval(timer);
+            document.getElementById("stopwatch").textContent = "00:00:00";
+        });
+    </script>
+</body>
+</html>
